@@ -1,0 +1,21 @@
+on: [push]
+
+jobs:
+   fixme:
+    runs-on: ubuntu-latest
+    name: Fix goodbye.sh permissions 
+
+    steps:
+
+      - name: Checke repo aus
+        uses: actions/checkout@v2
+        
+      - run: |
+          chmod u+x goodbye.sh 
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add .
+          git commit -m "Add changes" -a
+          
+      - name: Push changes
+        uses: ad-m/github-push-action@main
